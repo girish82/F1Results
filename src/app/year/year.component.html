@@ -1,0 +1,17 @@
+<div class="container">
+  <section id="year" class="py-1">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 mb-3" *ngFor="let yr of year">
+              <div class="card card-body bg-light img-container">
+                  <img src="{{image}}" style="width: 250px;height:250px" alt="" class="img-fluid">
+                  <div class="centered font-weight-bold">
+                    <a [routerLink]="['/results',yr]" routerLinkActive="router-link-active" class="text text-white">{{yr}}</a>
+                  </div>
+            </div>
+          </div>
+          </div>
+  </section>
+  </div>
+
+
+

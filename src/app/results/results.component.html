@@ -1,0 +1,58 @@
+
+<div class="container bg-white">
+  <div class="d-flex justify-content-between">
+    <div>
+      <p class="lead text text-primary font-weight-bold"> Winners Of Races For Year {{year}}</p>
+    </div>
+    <div>
+      <p class="lead text text-success font-weight-bold"> World champion({{year}}) : {{champion}}</p>
+    </div>
+    <div>
+      <p class="lead"><a [routerLink]="['/home']" routerLinkActive="router-link-active" class="text text-danger">Back to Year</a></p>
+    </div>
+  </div>
+
+  <section id="results" class="py-1">
+    <form>
+      <div class="form-group form-inline">
+          Race Name / Driver / Constructor <input class="form-control ml-2" type="text" [formControl]="filter"/>
+          <button class="btn btn-primary ml-2" (click)=search()>Search</button>
+      </div>
+    </form>
+    <table class="table table-hover bg-light">
+      <thead>
+        <tr>
+          <th scope="col">Round</th>
+          <th scope="col">Number</th>
+          <th scope="col">Race Name</th>
+          <th scope="col">Driver</th>
+          <th scope="col">Constructor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let res of refreshArr" [ngStyle]="{backgroundColor: res.driver === champion ? 'lightgreen' : 'white'}">
+          <td>{{res.round}}</td>
+          <td>{{res.number}}</td>
+          <td>{{res.raceName}}</td>
+          <td>{{res.driver}}</td>
+          <td>{{res.constructor}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="d-flex justify-content-between p-2">
+      <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshResults()">
+      </ngb-pagination>
+
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshResults()">
+        <option [ngValue]="4">4 items per page</option>
+        <option [ngValue]="6">6 items per page</option>
+        <option [ngValue]="8">8 items per page</option>
+      </select>
+
+    </div>
+  </section>
+  </div>
+
+
+
